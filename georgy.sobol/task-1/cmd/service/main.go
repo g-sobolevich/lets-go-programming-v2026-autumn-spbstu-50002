@@ -8,7 +8,6 @@ func main() {
 		op   string
 		err  error
 	)
-
 	_, err = fmt.Scan(&a)
 	if err != nil {
 		fmt.Println("Invalid first operand")
@@ -24,7 +23,6 @@ func main() {
 		fmt.Println("Invalid operation")
 		return
 	}
-
 	switch op {
 	case "+":
 		fmt.Println(a + b)
@@ -38,9 +36,8 @@ func main() {
 			fmt.Println("Division by zero")
 			return
 		}
-		fmt.Println(a / b)
+		else fmt.Println(a / b)
 	default:
 		fmt.Println("Invalid operation")
 	}
-	return
 }
