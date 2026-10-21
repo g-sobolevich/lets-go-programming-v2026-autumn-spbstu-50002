@@ -2,8 +2,11 @@ package main
 
 import "fmt"
 
-const maxTemperature = 30
-const minTemperature = 15
+const (
+	maxTemperature = 30
+	minTemperature = 15
+)
+
 
 func getComfortableTemperature(sign string, minCurrentT, maxCurrentT *int) int {
 	switch sign {
@@ -30,7 +33,6 @@ func getComfortableTemperature(sign string, minCurrentT, maxCurrentT *int) int {
 	}
 
 	if *minCurrentT > *maxCurrentT {
-
 		return -1
 	}
 
