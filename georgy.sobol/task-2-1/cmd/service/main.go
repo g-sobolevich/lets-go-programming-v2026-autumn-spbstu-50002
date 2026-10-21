@@ -25,6 +25,7 @@ func getComfortableTemperature(sign string, minCurrentT, maxCurrentT *int) int {
 		}
 	default:
 		fmt.Println("Invalid sign")
+
 		return -1
 	}
 
@@ -36,15 +37,15 @@ func getComfortableTemperature(sign string, minCurrentT, maxCurrentT *int) int {
 }
 
 func main() {
-	var n int
-	if _, err := fmt.Scan(&n); err != nil || (n < 1 || n > 1000) {
+	var numOfDepartments int
+	if _, err := fmt.Scan(&n); err != nil || (numOfDepartments < 1 || numOfDepartments > 1000) {
 		fmt.Println("Invalid department number")
 		return
 	}
 
-	for range n {
-		var k int
-		if _, err := fmt.Scan(&k); err != nil || (k < 1 || k > 1000) {
+	for range numOfDepartments {
+		var numOfWorkers int
+		if _, err := fmt.Scan(&k); err != nil || (numOfWorkers < 1 || numOfWorkers > 1000) {
 			fmt.Println("Invalid workers number")
 			return
 		}
@@ -52,7 +53,7 @@ func main() {
 		minCurrentT := minTemperature
 		maxCurrentT := maxTemperature
 
-		for range k {
+		for range numOfWorkers {
 			var sign string
 
 			if _, err := fmt.Scan(&sign); err != nil {
