@@ -7,14 +7,16 @@ import (
 
 type DishesHeap []int
 
-func (h DishesHeap) Len() int {
-	return len(h)
+func (h *DishesHeap) Len() int {
+	return len(*h)
 }
-func (h DishesHeap) Less(i, j int) bool {
-	return h[i] > h[j]
+
+func (h *DishesHeap) Less(i, j int) bool {
+	return (*h)[i] > (*h)[j]
 }
-func (h DishesHeap) Swap(i, j int) {
-	h[i], h[j] = h[j], h[i]
+
+func (h *DishesHeap) Swap(i, j int) {
+	(*h)[i], (*h)[j] = (*h)[j], (*h)[i]
 }
 
 func (h *DishesHeap) Push(x any) {
@@ -22,6 +24,7 @@ func (h *DishesHeap) Push(x any) {
 	if !ok {
 		panic("DishesHeap needs an integer")
 	}
+
 	*h = append(*h, val)
 }
 
@@ -40,8 +43,10 @@ func main() {
 		priority    int
 		result      int
 	)
+
 	dishesHeap := &DishesHeap{}
 	heap.Init(dishesHeap)
+
 	if _, err := fmt.Scan(&numOfDishes); err != nil || numOfDishes < 1 || numOfDishes > 10000 {
 		fmt.Println("Invalid dishes number")
 
@@ -50,11 +55,13 @@ func main() {
 
 	for range numOfDishes {
 		var dish int
+
 		if _, err := fmt.Scan(&dish); err != nil || dish < -10000 || dish > 10000 {
 			fmt.Println("Invalid dish")
 
 			return
 		}
+
 		heap.Push(dishesHeap, dish)
 	}
 
@@ -69,6 +76,7 @@ func main() {
 		if !ok {
 			panic("How did this even happen!?")
 		}
+
 		result = tempResult
 	}
 
