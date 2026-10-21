@@ -7,7 +7,6 @@ const (
 	minTemperature = 15
 )
 
-
 func getComfortableTemperature(sign string, minCurrentT, maxCurrentT *int) int {
 	switch sign {
 	case "<=":
