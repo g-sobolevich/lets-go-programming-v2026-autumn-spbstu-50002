@@ -7,12 +7,22 @@ import (
 
 type DishesHeap []int
 
-func (h DishesHeap) Len() int           { return len(h) }
-func (h DishesHeap) Less(i, j int) bool { return h[i] > h[j] }
-func (h DishesHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h DishesHeap) Len() int {
+	return len(h)
+}
+func (h DishesHeap) Less(i, j int) bool {
+	return h[i] > h[j]
+}
+func (h DishesHeap) Swap(i, j int) {
+	h[i], h[j] = h[j], h[i]
+}
 
 func (h *DishesHeap) Push(x any) {
-	*h = append(*h, x.(int))
+	val, ok := x.(int)
+	if !ok {
+		panic("DishesHeap needs an integer")
+	}
+	*h = append(*h, val)
 }
 
 func (h *DishesHeap) Pop() any {
@@ -20,38 +30,46 @@ func (h *DishesHeap) Pop() any {
 	n := len(old)
 	x := old[n-1]
 	*h = old[0 : n-1]
+
 	return x
 }
 
 func main() {
 	var (
-		n      int
-		k      int
-		result int
+		numOfDishes int
+		priority    int
+		result      int
 	)
 	dishesHeap := &DishesHeap{}
 	heap.Init(dishesHeap)
-	if _, err := fmt.Scan(&n); err != nil || (n < 1 || n > 10000) {
+	if _, err := fmt.Scan(&numOfDishes); err != nil || numOfDishes < 1 || numOfDishes > 10000 {
 		fmt.Println("Invalid dishes number")
+
 		return
 	}
 
-	for range n {
+	for range numOfDishes {
 		var dish int
-		if _, err := fmt.Scan(&dish); err != nil || (n < -10000 || n > 10000) {
+		if _, err := fmt.Scan(&dish); err != nil || dish < -10000 || dish > 10000 {
 			fmt.Println("Invalid dish")
+
 			return
 		}
 		heap.Push(dishesHeap, dish)
 	}
 
-	if _, err := fmt.Scan(&k); err != nil || (n < 1 || n > 10000) {
+	if _, err := fmt.Scan(&priority); err != nil || priority < 1 || priority > numOfDishes {
 		fmt.Println("Invalid priority number")
+
 		return
 	}
 
-	for range k {
-		result = heap.Pop(dishesHeap).(int)
+	for range priority {
+		tempResult, ok := heap.Pop(dishesHeap).(int)
+		if !ok {
+			panic("How did this even happen!?")
+		}
+		result = tempResult
 	}
 
 	fmt.Println(result)
