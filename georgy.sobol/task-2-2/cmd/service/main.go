@@ -37,6 +37,10 @@ func (h *DishesHeap) Pop() any {
 	return x
 }
 
+func inRange(n, bottom, top int) bool {
+	return n >= bottom && n <= top
+}
+
 func main() {
 	var (
 		numOfDishes int
@@ -47,7 +51,7 @@ func main() {
 	dishesHeap := &DishesHeap{}
 	heap.Init(dishesHeap)
 
-	if _, err := fmt.Scan(&numOfDishes); err != nil || numOfDishes < 1 || numOfDishes > 10000 {
+	if _, err := fmt.Scan(&numOfDishes); err != nil || !inRange(numOfDishes, 1, 10000) {
 		fmt.Println("Invalid dishes number")
 
 		return
@@ -56,7 +60,7 @@ func main() {
 	for range numOfDishes {
 		var dish int
 
-		if _, err := fmt.Scan(&dish); err != nil || dish < -10000 || dish > 10000 {
+		if _, err := fmt.Scan(&dish); err != nil || !inRange(dish, -10000, 10000) {
 			fmt.Println("Invalid dish")
 
 			return
@@ -65,7 +69,7 @@ func main() {
 		heap.Push(dishesHeap, dish)
 	}
 
-	if _, err := fmt.Scan(&priority); err != nil || priority < 1 || priority > numOfDishes {
+	if _, err := fmt.Scan(&priority); err != nil || !inRange(priority, 1, numOfDishes) {
 		fmt.Println("Invalid priority number")
 
 		return
