@@ -41,6 +41,11 @@ func inRange(n, bottom, top int) bool {
 	return n >= bottom && n <= top
 }
 
+const (
+	minDishes = 1
+	maxDishes = 10000
+)
+
 func main() {
 	var (
 		numOfDishes int
@@ -51,7 +56,7 @@ func main() {
 	dishesHeap := &DishesHeap{}
 	heap.Init(dishesHeap)
 
-	if _, err := fmt.Scan(&numOfDishes); err != nil || !inRange(numOfDishes, 1, 10000) {
+	if _, err := fmt.Scan(&numOfDishes); err != nil || !inRange(numOfDishes, minDishes, maxDishes) {
 		fmt.Println("Invalid dishes number")
 
 		return
@@ -60,7 +65,7 @@ func main() {
 	for range numOfDishes {
 		var dish int
 
-		if _, err := fmt.Scan(&dish); err != nil || !inRange(dish, -10000, 10000) {
+		if _, err := fmt.Scan(&dish); err != nil || !inRange(dish, -maxDishes, maxDishes) {
 			fmt.Println("Invalid dish")
 
 			return
@@ -69,7 +74,7 @@ func main() {
 		heap.Push(dishesHeap, dish)
 	}
 
-	if _, err := fmt.Scan(&priority); err != nil || !inRange(priority, 1, numOfDishes) {
+	if _, err := fmt.Scan(&priority); err != nil || !inRange(priority, minDishes, numOfDishes) {
 		fmt.Println("Invalid priority number")
 
 		return
