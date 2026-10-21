@@ -38,14 +38,14 @@ func getComfortableTemperature(sign string, minCurrentT, maxCurrentT *int) int {
 
 func main() {
 	var numOfDepartments int
-	if _, err := fmt.Scan(&n); err != nil || (numOfDepartments < 1 || numOfDepartments > 1000) {
+	if _, err := fmt.Scan(&numOfDepartments); err != nil || (numOfDepartments < 1 || numOfDepartments > 1000) {
 		fmt.Println("Invalid department number")
 		return
 	}
 
 	for range numOfDepartments {
 		var numOfWorkers int
-		if _, err := fmt.Scan(&k); err != nil || (numOfWorkers < 1 || numOfWorkers > 1000) {
+		if _, err := fmt.Scan(&numOfWorkers); err != nil || (numOfWorkers < 1 || numOfWorkers > 1000) {
 			fmt.Println("Invalid workers number")
 			return
 		}
