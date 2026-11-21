@@ -31,11 +31,11 @@ func LoadXML(path string) (*ValuteCostsXML, error) {
 	decoder := xml.NewDecoder(file)
 	decoder.CharsetReader = charset.NewReaderLabel
 
-	var rates ValuteCostsXML
+	var costs ValuteCostsXML
 
-	if err := decoder.Decode(&rates); err != nil {
+	if err := decoder.Decode(&costs); err != nil {
 		return nil, fmt.Errorf("failed to decode XML file: %w", err)
 	}
 
-	return &rates, nil
+	return &costs, nil
 }

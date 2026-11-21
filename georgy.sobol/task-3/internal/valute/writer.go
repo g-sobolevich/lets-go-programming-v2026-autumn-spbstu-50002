@@ -16,10 +16,10 @@ func ValutesToJSON(path string, valutes []Valute) error {
 	dir := filepath.Dir(path)
 
 	if err := os.MkdirAll(dir, defaultDirPerms); err != nil {
-		return fmt.Errorf("failed to create directory: %w", err)
+		return fmt.Errorf("failed to create output directory: %w", err)
 	}
 
-	data, err := json.MarshalIndent(valutes, "", "    ")
+	data, err := json.MarshalIndent(valutes, "", "		")
 	if err != nil {
 		return fmt.Errorf("failed to encode JSON file: %w", err)
 	}
